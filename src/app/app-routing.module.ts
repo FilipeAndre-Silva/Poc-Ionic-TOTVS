@@ -11,6 +11,26 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'exibir-usuario/:id',
+    loadChildren: () => import('./exibir-usuario/exibir-usuario.module').then( m => m.ExibirUsuarioPageModule)
+  },
+  {
+    path: 'cadastrar',
+    loadChildren: () => import('./cadastrar/cadastrar.module').then( m => m.CadastrarPageModule)
+  },
+  {
+    path: 'alterar/:id',
+    loadChildren: () => import('./alterar/alterar.module').then( m => m.AlterarPageModule)
+  },
+  {
+    path: 'deletar/:id',
+    loadChildren: () => import('./deletar/deletar.module').then( m => m.DeletarPageModule)
+  },
+  {
+    path: 'leitura-codigo-de-barras',
+    loadChildren: () => import('./leitura-codigo-de-barras/leitura-codigo-de-barras.module').then( m => m.LeituraCodigoDeBarrasPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Alterar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="ligth">
+  <ion-item color="warning" class="ion-text-center">
+    <ion-label>Preencha os dados</ion-label>
+  </ion-item>
+
+  <ion-card>
+    <ion-item>
+      <ion-label position="stacked" color="warning">Nome:</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="warning">Sobrenome:</ion-label>
+      <ion-input type="text"  [(ngModel)]="usuario.sobrenome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="warning">Email:</ion-label>
+      <ion-input type="text"  [(ngModel)]="usuario.email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="warning">Telefone:</ion-label>
+      <ion-input type="text"  [(ngModel)]="usuario.telefone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="warning">CPF:</ion-label>
+      <ion-input type="text"  [(ngModel)]="usuario.cpf"></ion-input>
+    </ion-item>
+  </ion-card>
+  <ion-button expand="full" color="warning" (click)="salvar(usuario.nome, usuario.sobrenome, usuario.email, usuario.telefone, usuario.cpf)">Salvar Alteração</ion-button>
+
+  <ion-card *ngIf="usuario.updatedAt">
+    <ion-card-header color="success" class="ion-text-center">
+      Dados de alteração
+    </ion-card-header>
+
+    <ion-item>
+      <ion-label>Id: {{ usuario.id }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nome: {{ usuario.name }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Profissão: {{ usuario.job }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data de Alteração: {{ usuario.updatedAt | date:'dd/MM/yyyy HH:mm:ss'}}</ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ usuario.nome }} {{ usuario.sobrenome }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Realmente deseja deletar todas as informações do usuário {{ usuario.nome }} {{ usuario.sobrenome }} ?
+    </ion-card-content>
+  </ion-card>
+  <br>
+  <ion-button expand="full" color="danger" (click)="deletar(usuario.id)">Deletar</ion-button>
+</ion-content>

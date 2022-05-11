@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="ligth">
+  <ion-item color="success" class="ion-text-center">
+    <ion-label>Preencha os dados</ion-label>
+  </ion-item>
+
+  <ion-card>
+    <ion-item>
+      <ion-label position="stacked">Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Sobrenome</ion-label>
+      <ion-input type="text"  [(ngModel)]="usuario.sobrenome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="text"  [(ngModel)]="usuario.email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Telefone</ion-label>
+      <ion-input type="text"  [(ngModel)]="usuario.telefone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">CPF</ion-label>
+      <ion-input type="text"  [(ngModel)]="usuario.cpf"></ion-input>
+    </ion-item>
+  </ion-card>
+  <br>
+  <ion-button expand="full" color="success" (click)="salvar(usuario.nome, usuario.sobrenome, usuario.email, usuario.telefone, usuario.cpf)">Salvar</ion-button>
+</ion-content>
