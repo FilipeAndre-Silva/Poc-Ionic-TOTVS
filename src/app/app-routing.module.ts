@@ -30,7 +30,11 @@ const routes: Routes = [
   {
     path: 'leitura-codigo-de-barras',
     loadChildren: () => import('./leitura-codigo-de-barras/leitura-codigo-de-barras.module').then( m => m.LeituraCodigoDeBarrasPageModule)
+  },  {
+    path: 'bluetooth',
+    loadChildren: () => import('./bluetooth/bluetooth.module').then( m => m.BluetoothPageModule)
   },
+
 ];
 
 @NgModule({
