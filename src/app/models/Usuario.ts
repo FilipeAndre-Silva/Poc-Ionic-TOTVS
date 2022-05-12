@@ -1,8 +1,7 @@
 export class Usuario{
     id?: number;
-    nome?: string;
-    sobrenome?: string;
-    email?: string;
-    telefone?: string;
-    cpf?: string;
+    name?: string;
+    job?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }

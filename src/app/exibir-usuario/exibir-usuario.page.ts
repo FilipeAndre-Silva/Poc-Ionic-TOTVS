@@ -18,9 +18,8 @@ export class ExibirUsuarioPage implements OnInit {
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.userService.buscarId(this.id).subscribe(dados => {
-      this.user = dados;
+      this.user = dados['data'];
       console.log(this.user);
     });
   }
-
 }

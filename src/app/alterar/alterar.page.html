@@ -9,37 +9,24 @@
 </ion-header>
 
 <ion-content color="ligth">
+  <br>
   <ion-item color="warning" class="ion-text-center">
     <ion-label>Preencha os dados</ion-label>
   </ion-item>
+  <br>
 
   <ion-card>
     <ion-item>
-      <ion-label position="stacked" color="warning">Nome:</ion-label>
-      <ion-input type="text" [(ngModel)]="usuario.nome"></ion-input>
+      <ion-label position="stacked">Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.name"></ion-input>
     </ion-item>
-
     <ion-item>
-      <ion-label position="stacked" color="warning">Sobrenome:</ion-label>
-      <ion-input type="text"  [(ngModel)]="usuario.sobrenome"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked" color="warning">Email:</ion-label>
-      <ion-input type="text"  [(ngModel)]="usuario.email"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked" color="warning">Telefone:</ion-label>
-      <ion-input type="text"  [(ngModel)]="usuario.telefone"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked" color="warning">CPF:</ion-label>
-      <ion-input type="text"  [(ngModel)]="usuario.cpf"></ion-input>
+      <ion-label position="stacked">Profissão</ion-label>
+      <ion-input type="text"  [(ngModel)]="usuario.job"></ion-input>
     </ion-item>
   </ion-card>
-  <ion-button expand="full" color="warning" (click)="salvar(usuario.nome, usuario.sobrenome, usuario.email, usuario.telefone, usuario.cpf)">Salvar Alteração</ion-button>
+  <br>
+  <ion-button expand="full" color="warning" (click)="salvar()">Salvar</ion-button>
 
   <ion-card *ngIf="usuario.updatedAt">
     <ion-card-header color="success" class="ion-text-center">

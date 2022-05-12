@@ -3,51 +3,35 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+
     <ion-title>Usuário: {{ this.id }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-text-center">
   <div *ngIf="user.id">
+    <img [src]="user.avatar" alt="Foto">
+  
     <ion-card>
       <ion-item color="dark">
-        <ion-label>Nome:</ion-label>
+        <ion-label class="strong">Nome:</ion-label>
       </ion-item>
 
       <ion-item>
-        <ion-label>{{ user.nome }} {{ user.sobrenome }}</ion-label>
+        <ion-label>{{ user.first_name }} {{ user.last_name }}</ion-label>
       </ion-item>
     </ion-card>
 
     <ion-card>
       <ion-item color="dark">
-        <ion-label>E-mail:</ion-label>
+        <ion-label class="strong">E-mail:</ion-label>
       </ion-item>
 
       <ion-item>
         <ion-label>{{ user.email }}</ion-label>
       </ion-item>
     </ion-card>
-
-    <ion-card>
-      <ion-item color="dark">
-        <ion-label>Telefone:</ion-label>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>{{ user.telefone }}</ion-label>
-      </ion-item>
-    </ion-card>
-
-    <ion-card>
-      <ion-item color="dark">
-        <ion-label>CPF:</ion-label>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>{{ user.cpf }}</ion-label>
-      </ion-item>
-    </ion-card>
   </div>
+
   <ion-button expand="full" color="warning" [routerLink]="'/deletar/' + user.id">deletar</ion-button>
 </ion-content>

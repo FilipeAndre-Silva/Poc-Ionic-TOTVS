@@ -15,12 +15,18 @@ export class HomePage {
   constructor(private userService: UserService) {}
   ionViewWillEnter()
   {
-   this.buscarUsuarios();
+   this.buscarUsuarios(1);
   }
 
-  public buscarUsuarios(){
-    this.userService.buscarTodos().subscribe(dados => {
-      this.listaUsuarios = dados;
+  public buscarUsuarios(pagina: number){
+    if(pagina <= 0){
+      pagina = 1;
+    }
+
+    this.pagina = pagina;
+    this.userService.buscarTodos(pagina).subscribe(dados => {
+      this.listaUsuarios = dados['data'];
+      this.totalPaginas = dados['total_pages'];
       console.log("Lista", this.listaUsuarios);
     });
   }

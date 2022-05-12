@@ -11,21 +11,14 @@ import { Router } from '@angular/router';
 export class CadastrarPage implements OnInit {
 
   public usuario: Usuario = {}
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
 
-  public async salvar(nome:string, sobrenome:string, email:string, telefone:string, cpf:string){
-    this.usuario.nome = nome;
-    this.usuario.sobrenome = sobrenome;
-    this.usuario.email = email;
-    this.usuario.telefone = telefone;
-    this.usuario.cpf = cpf;
-
+  public async salvar(){
     this.userService.cadastrar(this.usuario).subscribe(retorno =>{
       this.usuario = retorno;
-      this.router.navigate([ '/home' ]);
     })
   }
 }

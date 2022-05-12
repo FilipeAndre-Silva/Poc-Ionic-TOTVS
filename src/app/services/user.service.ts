@@ -1,20 +1,28 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/Usuario';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private url = 'http://localhost:3000/usuarios';
+  private url = 'https://reqres.in/api/users';
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor(private http: HttpClient) { }
 
-  public buscarTodos(){
-    return this.http.get(`${this.url}`);
-  }
+  public buscarTodos(pagina: number){
+    if(pagina <= 0){
+      pagina = 1;
+    }
 
+    return this.http.get(`${this.url}?page=${pagina}`);
+  }
+  
   public buscarId(id: number){
     return this.http.get(`${this.url}/${id}`);
   }
@@ -27,7 +35,7 @@ export class UserService {
     return this.http.put(`${this.url}/${usuario.id}`, usuario);
   }
 
-  public deletar(id: number){
-    return this.http.delete(`${this.url}/${id}`);
+  public deletar(usuario: Usuario){
+    return this.http.delete(`${this.url}/${usuario.id}`);
   }
 }

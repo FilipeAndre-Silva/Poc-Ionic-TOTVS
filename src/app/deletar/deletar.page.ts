@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class DeletarPage implements OnInit {
 
-  public usuario:Usuario = {};
+  public user: any = {};
+  public usuarioIdDelete: number;
   public id: number;
   
   constructor(private route:ActivatedRoute,
@@ -21,14 +22,14 @@ export class DeletarPage implements OnInit {
     ngOnInit() {
       this.id = Number(this.route.snapshot.paramMap.get('id'));
       this.userService.buscarId(this.id).subscribe(dados => {
-        this.usuario.id = dados['id'];
-        this.usuario.nome = dados['nome'];
-        this.usuario.sobrenome = dados['sobrenome'];
+        this.user = dados['data'];
+        console.log(this.user);
       });
     }
 
-  public deletar(id: number){
-    this.userService.deletar(id).subscribe();
-    this.router.navigate([ '/home' ]);
+  public deletar(){
+    this.userService.deletar(this.user).subscribe(retorno =>{
+      this.usuarioIdDelete = this.id;
+    })
   }
 }

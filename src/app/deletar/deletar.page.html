@@ -9,12 +9,22 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>{{ usuario.nome }} {{ usuario.sobrenome }}</ion-card-title>
+      <ion-card-title> {{ user.first_name }} </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Realmente deseja deletar todas as informações do usuário {{ usuario.nome }} {{ usuario.sobrenome }} ?
+      Realmente deseja deletar todas as informações do usuário {{ user.first_name }} {{ user.last_name }}?
     </ion-card-content>
   </ion-card>
   <br>
-  <ion-button expand="full" color="danger" (click)="deletar(usuario.id)">Deletar</ion-button>
+  <ion-button expand="full" color="danger" (click)="deletar(user.id)">Deletar</ion-button>
 </ion-content>
+
+<ion-card *ngIf="usuarioIdDelete">
+  <ion-card-header color="success" class="ion-text-center">
+    Dados Cadastrados
+  </ion-card-header>
+
+  <ion-item>
+    <ion-label>{{ user.first_name }} {{ user.last_name }} Deletado !</ion-label>
+  </ion-item>
+</ion-card>
