@@ -1,10 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>leituraCodigoDeBarras</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Código de Barras</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-button (click)="scan()">Escanear código</ion-button>
-  {{ code }}
+<ion-content fullscreen class="ion-padding">
+  <ion-button (click)="scan()" expand="block">Escanear</ion-button>
+
+  <ion-list *ngIf="code">
+    <ion-list-header>Resultado da leitura:</ion-list-header>
+    <ion-item>
+      <ion-label>{{ code }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

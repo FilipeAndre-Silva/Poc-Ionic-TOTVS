@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { BLE } from '@awesome-cordova-plugins/ble/ngx';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-bluetooth',
@@ -10,23 +11,21 @@ export class BluetoothPage implements OnInit {
 
   teeth: any;
   devices: any[] = [];
-  msgBack = "Iniciou";
-  tempo = 30;
+  tempo = 5;
   
-  constructor(private ble: BLE, private ngZone: NgZone) {}
+  constructor(private ble: BLE, private ngZone: NgZone,public loadingController: LoadingController) {}
 
   ngOnInit() {
   }
 
-  Scan(){
-    setTimeout(this.myGreeting(), 1000);
+  async Scan(){
     this.devices = [];
     this.ble.scan([],this.tempo).subscribe(
-      device => this.onDeviceDiscovered(device)
+      async device => await this.onDeviceDiscovered(device)
     );
   }
 
-  onDeviceDiscovered(device){
+  async onDeviceDiscovered(device){
     console.log('Discovered' + JSON.stringify(device,null,2));
     this.ngZone.run(()=>{
       this.devices.push(device)
@@ -34,7 +33,16 @@ export class BluetoothPage implements OnInit {
     })
   }
 
-  myGreeting() {
-    return this.msgBack = "Acabou"
+  async presentLoading() {
+    await this.Scan();
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Buscando...',
+      duration: 5000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
   }
 }
