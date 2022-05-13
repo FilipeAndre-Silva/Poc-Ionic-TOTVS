@@ -6,22 +6,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
 
   <ion-item-sliding *ngFor="let user of listaUsuarios">
+
     <ion-item [routerLink]="'exibir-usuario/' + user.id">
-      <ion-thumbnail slot="start">
-        <img [src]="user.avatar" alt="Foto">
-      </ion-thumbnail>
-
-      <div>
-        <p>{{ user.first_name }}</p>
-        <p>{{ user.last_name }}</p>
-      </div>
-
-      <ion-badge color="dark" slot="end">
-        ID: {{ user.id }}
-      </ion-badge>
+      <ion-avatar slot="start">
+        <img [src]="user.avatar" alt="Foto"/>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ user.first_name }}</h2>
+        <h3>{{ user.last_name }}</h3>
+      </ion-label>
     </ion-item>
 
     <ion-item-options side="end">
@@ -39,14 +35,13 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="dark" class="ion-text-center">
-    
+  <ion-toolbar class="ion-text-center">
     <ion-buttons slot="start" *ngIf="pagina > 1">
       <ion-button (click)="buscarUsuarios(pagina - 1)">
         <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-
+    
     Página: {{ pagina }}
 
     <ion-buttons slot="end" *ngIf="pagina < totalPaginas">
@@ -54,6 +49,6 @@
         <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
+
 </ion-footer>

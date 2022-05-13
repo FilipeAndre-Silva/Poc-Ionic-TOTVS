@@ -9,12 +9,6 @@
 </ion-header>
 
 <ion-content color="ligth">
-  <br>
-  <ion-item color="warning" class="ion-text-center">
-    <ion-label>Preencha os dados</ion-label>
-  </ion-item>
-  <br>
-
   <ion-card>
     <ion-item>
       <ion-label position="stacked">Nome</ion-label>
@@ -29,21 +23,18 @@
   <ion-button expand="full" color="warning" (click)="salvar()">Salvar</ion-button>
 
   <ion-card *ngIf="usuario.updatedAt">
-    <ion-card-header color="success" class="ion-text-center">
-      Dados de alteração
-    </ion-card-header>
-
     <ion-item>
-      <ion-label>Id: {{ usuario.id }}</ion-label>
+      <p>Id: {{ usuario.id }}</p>
     </ion-item>
     <ion-item>
-      <ion-label>Nome: {{ usuario.name }}</ion-label>
+      <p>Nome: {{ usuario.name }}</p>
     </ion-item>
     <ion-item>
-      <ion-label>Profissão: {{ usuario.job }}</ion-label>
+      <p>Profissão: {{ usuario.job }}</p>
     </ion-item>
     <ion-item>
-      <ion-label>Data de Alteração: {{ usuario.updatedAt | date:'dd/MM/yyyy HH:mm:ss'}}</ion-label>
+      <p>Data de Cadastro: {{ usuario.updatedAt | date:'dd/MM/yyyy HH:mm'}}</p>
     </ion-item>
   </ion-card>
 </ion-content>
+

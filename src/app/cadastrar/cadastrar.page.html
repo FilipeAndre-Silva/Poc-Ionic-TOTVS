@@ -9,41 +9,33 @@
 </ion-header>
 
 <ion-content color="ligth">
-  <br>
-  <ion-item color="success" class="ion-text-center">
-    <ion-label>Preencha os dados</ion-label>
-  </ion-item>
-  <br>
-
-  <ion-card>
+  
+  <ion-list lines="full" class="ion-no-margin">
     <ion-item>
-      <ion-label position="stacked">Nome</ion-label>
+      <ion-label position="floating">Nome</ion-label>
       <ion-input type="text" [(ngModel)]="usuario.name"></ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-label position="stacked">Profissão</ion-label>
+      <ion-label position="floating">Profissão</ion-label>
       <ion-input type="text"  [(ngModel)]="usuario.job"></ion-input>
     </ion-item>
-  </ion-card>
+  </ion-list>
   <br>
   <ion-button expand="full" color="success" (click)="salvar()">Salvar</ion-button>
-
+  
   <ion-card *ngIf="usuario.id">
-    <ion-card-header color="success" class="ion-text-center">
-      Dados Cadastrados
-    </ion-card-header>
-
     <ion-item>
-      <ion-label>Id: {{ usuario.id }}</ion-label>
+      <p>Id: {{ usuario.id }}</p>
     </ion-item>
     <ion-item>
-      <ion-label>Nome: {{ usuario.name }}</ion-label>
+      <p>Nome: {{ usuario.name }}</p>
     </ion-item>
     <ion-item>
-      <ion-label>Profissão: {{ usuario.job }}</ion-label>
+      <p>Profissão: {{ usuario.job }}</p>
     </ion-item>
     <ion-item>
-      <ion-label>Data de Cadastro: {{ usuario.createdAt | date:'dd/MM/yyyy HH:mm:ss'}}</ion-label>
+      <p>Data de Cadastro: {{ usuario.createdAt | date:'dd/MM/yyyy HH:mm'}}</p>
     </ion-item>
   </ion-card>
 </ion-content>
