@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Usuários
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-item-sliding *ngFor="let user of listaUsuarios">
+    <ion-item [routerLink]="'exibir-usuario/' + user.id">
+      <ion-thumbnail slot="start">
+        <img [src]="user.avatar" alt="Foto">
+      </ion-thumbnail>
+
+      <div>
+        <p>{{ user.first_name }}</p>
+        <p>{{ user.last_name }}</p>
+      </div>
+
+      <ion-badge color="dark" slot="end">
+        ID: {{ user.id }}
+      </ion-badge>
+    </ion-item>
+
+    <ion-item-options side="end">
+      <ion-item-option color="warning" [routerLink]="'alterar/' + user.id">
+        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" routerLink="cadastrar/">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="dark" class="ion-text-center">
+    
+    <ion-buttons slot="start" *ngIf="pagina > 1">
+      <ion-button (click)="buscarUsuarios(pagina - 1)">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    Página: {{ pagina }}
+
+    <ion-buttons slot="end" *ngIf="pagina < totalPaginas">
+      <ion-button (click)="buscarUsuarios(pagina + 1)">
+        <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-footer>

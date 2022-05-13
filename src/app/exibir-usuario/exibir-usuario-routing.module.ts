@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ExibirUsuarioPage
+  },
+  {
+    path: 'deletar/:id',
+    loadChildren: () => import('../deletar/deletar.module').then( m => m.DeletarPageModule)
   }
 ];
 
