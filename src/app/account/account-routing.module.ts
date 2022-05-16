@@ -6,13 +6,24 @@ import { AccountPage } from './account.page';
 const routes: Routes = [
   {
     path: '',
-    component: AccountPage  
+    component: AccountPage
+  }, 
+  {
+    path: 'exibir-usuario/:id',
+    loadChildren: () => import('./exibir-usuario/exibir-usuario.module').then( m => m.ExibirUsuarioPageModule)
   },
   {
-    path: '',
-    redirectTo: '/account',
-    pathMatch: 'full'
-  }
+    path: 'deletar/:id',
+    loadChildren: () => import('./deletar/deletar.module').then( m => m.DeletarPageModule)
+  },
+  {
+    path: 'alterar/:id',
+    loadChildren: () => import('./alterar/alterar.module').then( m => m.AlterarPageModule)
+  },
+  {
+    path: 'cadastrar',
+    loadChildren: () => import('./cadastrar/cadastrar.module').then( m => m.CadastrarPageModule)
+  } 
 ];
 
 @NgModule({
