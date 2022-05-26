@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Selecione a Empresa</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <ion-card *ngFor="let item of listCompanies; index as i;" (click)="selectCompany(item.id);">
+    <ion-card-content>
+      {{item.companyName}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

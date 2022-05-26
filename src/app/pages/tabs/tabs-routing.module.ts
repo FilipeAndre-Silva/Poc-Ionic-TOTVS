@@ -24,9 +24,13 @@ const routes: Routes = [
         loadChildren: () => import('../bluetooth/bluetooth.module').then(m => m.BluetoothPageModule)
       },
       {
+        path: 'display-orders',
+        loadChildren: () => import('../display-orders/display-orders.module').then(m => m.DisplayOrdersPageModule)      
+      }
+      /* {
         path: 'payment',
         loadChildren: () => import('../account/account.module').then(m => m.AccountPageModule)      
-      }
+      } */
     ]
   }
 ];

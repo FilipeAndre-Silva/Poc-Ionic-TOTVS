@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Usuario } from '../../models/Usuario';
-import { UserService } from '../../services/user.service';
+import { Usuario } from '../../../models/Usuario';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-alterar',
