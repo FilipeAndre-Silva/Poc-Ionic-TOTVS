@@ -16,18 +16,10 @@ export class DisplayOrdersPage implements OnInit {
 
   constructor(private vendasService: VendasService) { }
 
-  slideOpts = {
-    initialSlide: 0,
-    speed: 400
-  };
-
   listsGeneral = [];
 
   ngOnInit() {
-   
     this.ordersbystatus();
-    console.log(this.listsGeneral);
-
   }
 
   ordersbystatus(){
