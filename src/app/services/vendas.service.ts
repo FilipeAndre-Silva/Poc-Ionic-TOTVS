@@ -46,7 +46,7 @@ export class VendasService {
     )
   }
 
-  ordersbystatus(): Observable<any> {
+  ordersbystatus(status): Observable<any> {
     /* const params = new HttpParams()
     .set('StatusList', 0)
     .set('StatusList', 1)
@@ -56,7 +56,7 @@ export class VendasService {
 
 
     const params = new HttpParams({
-      fromString: 'statusList=0&statusList=1&statusList=2'
+      fromString: status
     });
 
     return this.http.get(
@@ -71,6 +71,11 @@ export class VendasService {
       })
     )
   }
+
+  getKdsGroups() {
+    return this.http.get(`${this.url_order}/kitchen/kdsgroups`);
+  }
+
 
  /*  ordersbystatus() {
     const params = new HttpParams()
