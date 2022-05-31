@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ApiService } from './api.service';
+import * as Rx from "rxjs/Rx";
+import { from, Observable, throwError } from 'rxjs';
+import { map, catchError, filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,19 +27,62 @@ export class VendasService {
 
   getsimplifiedcompanylist() {
     return this.http.get(`${this.url_order}/company/getsimplifiedcompanylist`);
-  }  
+  }
 
-  ordersbystatus() {
-    const params = new HttpParams()
-    //.set('ExceptSalesOrders', true)
-    //.set('LimitAmount', 10)
-    .set('StatusList', 0) 
+
+
+  getsimplifiedcompanylist2(): Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    return this.http.get(
+      `${this.url_order}/company/getsimplifiedcompanylist`,
+      { headers: headers }
+    ).pipe(
+
+      map((data: any) => {
+        return data;
+      }), catchError(error => {
+        return throwError('Estabelecimentos não encontrados.');
+      })
+    )
+  }
+
+  ordersbystatus(): Observable<any> {
+    /* const params = new HttpParams()
+    .set('StatusList', 0)
     .set('StatusList', 1)
-    .set('StatusList', 2);
-    
-    return this.http.get(`${this.url_order}/kitchen/ordersbystatus`, {params});
-  }  
+    .set('StatusList', 2); */
 
-} 
+    //yRequest URL: https://kds-stg.thexpos.net/ordercontrol/kitchen/ordersbystatus?statusList=0&statusList=1&statusList=2&culture=pt-BR
+
+
+    const params = new HttpParams({
+      fromString: 'statusList=0&statusList=1&statusList=2'
+    });
+
+    return this.http.get(
+      `${this.url_order}/kitchen/ordersbystatus`,
+      { params }
+    ).pipe(
+      map((data: any) => {
+        return data;
+      }),
+      catchError(error => {
+        return throwError('Pedidos não encontrados.');
+      })
+    )
+  }
+
+ /*  ordersbystatus() {
+    const params = new HttpParams()
+      //.set('ExceptSalesOrders', true)
+      //.set('LimitAmount', 10)
+      .set('StatusList', 0)
+      .set('StatusList', 1)
+      .set('StatusList', 2);
+
+    return this.http.get(`${this.url_order}/kitchen/ordersbystatus`, { params });
+  } */
+
+}
 
 

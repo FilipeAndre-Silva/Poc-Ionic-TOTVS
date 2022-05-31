@@ -1,19 +1,20 @@
 ion-slides {
-    height: 100%;
-  }
+  height: 100%;
+}
 
-  .swiper {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .swiper-slide {
-    text-align: center;
+.swiper {
+  width: 100%;
+  // height: 100%;
+}
+
+.swiper .swiper-slide {
+  padding: 10px;
+  /*   text-align: center;
     font-size: 18px;
-    background: #fff;
-  
-    /* Center slide text vertically */
-    display: -webkit-box;
+    background: #fff; */
+
+  /* Center slide text vertically */
+  /* display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -24,13 +25,70 @@ ion-slides {
     -webkit-box-align: center;
     -ms-flex-align: center;
     -webkit-align-items: center;
-    align-items: center;
-  }
-  
-  .swiper-slide img {
-    display: block;
+    align-items: center; */
+
+    height: auto !important;
+    display: flex;
+    position: relative;
+    flex-shrink: 0;
+    align-items: start !important;
+    justify-content: center;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
+    font-size: 18px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* .swiper .swiper-slide {
+  display: flex;
+  position: relative;
+  flex-shrink: 0;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+  font-size: 18px;
+  text-align: center;
+  box-sizing: border-box;
+}
+ */
+
+.card-content {
+  padding: 0;
+  background-color: #F0F0F0;
+  //margin-bottom: 5px;
+}
+
+.category-title {
+  text-align: end;
+  //margin-bottom: 5px;
+  font-size: 20px;
+  text-transform: uppercase;
+  color:  var(--ion-color-primary);
+}
+.position-title {
+  text-align: start;
+  font-size: 30px;
+  //margin-bottom: 5px;
+}
+
+.position-subtitle {
+  text-align: start;
+  font-size: 14px;
+  //margin-bottom: 5px;
+}
+
+
+.danger {
+  background-color: var(--ion-color-danger) !important;
+  font-size: 10px;
+  height: 25px;
+  // --header-progress-width: 75%;
+  // font-size: var(--card-header-font-size);
+  // height: var(--card-header-height);
+  line-height: 25px;
+  align-items: center;
+  padding: 0 10px;
+  display: flex;
+  background-color: transparent;
+  // color: var(--ion-color-light);
+}

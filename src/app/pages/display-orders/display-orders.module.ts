@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { DisplayOrdersPageRoutingModule } from './display-orders-routing.module';
 
 import { DisplayOrdersPage } from './display-orders.page';
-
 import { SwiperModule } from 'swiper/angular';
 
 @NgModule({

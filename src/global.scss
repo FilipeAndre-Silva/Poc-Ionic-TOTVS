@@ -32,3 +32,16 @@
 @import '~swiper/scss/scrollbar';
 @import '~swiper/scss/zoom';
 @import '~@ionic/angular/css/ionic-swiper';
+
+.swiper .swiper-slide {
+    display: flex;
+    position: relative;
+    flex-shrink: 0;
+    justify-content: center;
+    width: 100%;
+    height: auto !important;
+    font-size: 18px;
+    text-align: center;
+    box-sizing: border-box;
+    align-items: start;
+  }
