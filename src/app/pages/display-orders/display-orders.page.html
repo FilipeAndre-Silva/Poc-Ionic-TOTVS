@@ -9,9 +9,9 @@
 </ion-header>
 
 <ion-content style="height: auto;">
-  <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge *ngIf="showFilter">
     <ion-fab-button>
-      <ion-icon name="filter"></ion-icon>
+      <ion-icon [name]="statusSelected[0]?.icon"></ion-icon>
     </ion-fab-button>
     <ion-fab-list>
       <ion-fab-button  *ngFor="let item of listGroups; index as i;" (click)="formatOrdersByStatus(this.listsGeneral, item.displayId)">
@@ -20,13 +20,12 @@
     </ion-fab-list>
   </ion-fab>
 
-  <swiper *ngIf="showSwipes" [spaceBetween]="10" [navigation]="true" [pagination]="{ clickable: true }" [scrollbar]="{ draggable: true }"
+  <swiper *ngIf="showSwipes" [spaceBetween]="10" [navigation]="true" [pagination]="{ clickable: true }"
     (slideChange)="onSlideChange($event)" class="mySwiper">
     <ng-template swiperSlide>
       <ion-col>
         <ion-row style="padding: 20px;">
-          <ion-col *ngIf="listQueued.length > 0">
-            <!-- <ion-card> -->
+          <ion-col>
             <ion-card *ngFor="let item of listQueued; index as i;">
               <ion-card-header class="danger">
                 <div> </div>
@@ -60,12 +59,13 @@
                 </ion-item>
               </ion-footer>
             </ion-card>
-            <!-- </ion-card> -->
+            <ion-card *ngIf="listQueued.length == 0">
+              <ion-card-content>
+                Nenhum pedido {{statusSelected[0].displayDescription != 'Todos' ? ' de ' + statusSelected[0].displayDescription : ''}} na Fila
+              </ion-card-content>
+             </ion-card>
           </ion-col>
-     <!--      <ion-col *ngIf="!listQueued || listQueued.lenth > 0">
-            
-          </ion-col> -->
-        </ion-row>
+         </ion-row>
       </ion-col>
     </ng-template>
 
@@ -74,7 +74,6 @@
 
         <ion-row style="padding: 20px;">
           <ion-col>
-            <!-- <ion-card> -->
             <ion-card *ngFor="let item of listInPreparation; index as i;">
               <ion-card-header class="danger">
                 <div> </div>
@@ -108,16 +107,18 @@
                 </ion-item>
               </ion-footer>
             </ion-card>
-            <!-- </ion-card> -->
+            <ion-card *ngIf="listInPreparation.length == 0">
+              <ion-card-content>
+                Nenhum pedido {{statusSelected[0].displayDescription != 'Todos' ? ' de ' + statusSelected[0].displayDescription : ''}} em Preparo
+              </ion-card-content>
+             </ion-card>
           </ion-col>
         </ion-row>
       </ion-col>
-
     </ng-template>
 
     <ng-template swiperSlide>
       <ion-col>
-
         <ion-row style="padding: 20px;">
           <ion-col>
             <!-- <ion-card> -->
@@ -154,11 +155,15 @@
                 </ion-item>
               </ion-footer>
             </ion-card>
+            <ion-card *ngIf="listReady.length == 0">
+              <ion-card-content>
+                Nenhum pedido {{statusSelected[0].displayDescription != 'Todos' ? ' de ' + statusSelected[0].displayDescription : ''}} Pronto
+              </ion-card-content>
+             </ion-card>
             <!-- </ion-card> -->
           </ion-col>
         </ion-row>
       </ion-col>
-
     </ng-template>
   </swiper>
 </ion-content>

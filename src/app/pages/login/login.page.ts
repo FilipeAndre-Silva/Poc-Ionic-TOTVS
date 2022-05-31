@@ -42,10 +42,10 @@ export class LoginPage implements OnInit {
         await loading.dismiss();
         console.log('teste 4')
         if(res.error){
-          console.log('teste 3')
+          console.log('teste 3', res)
           const alert = await this.alertController.create({
-            header: 'Login failed',
-            message: res.error?.msg ? res.error?.msg : res,
+            header: 'Erro ao efetuar login',
+            message: res.error?.details[0].message ? res.error.details[0].message : res,
             buttons: ['OK'],
           });
           await alert.present();

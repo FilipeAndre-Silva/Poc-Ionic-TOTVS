@@ -14,7 +14,7 @@ import { SwiperEvents } from 'swiper/types';
 })
 export class DisplayOrdersPage implements OnInit {
 
-  constructor(private vendasService: VendasService) { }
+  constructor(private vendasService: VendasService) {  }
 
   listsGeneral: any = [];
   listQueued: any = [];
@@ -23,16 +23,22 @@ export class DisplayOrdersPage implements OnInit {
   activeIndex : number = 0;
   listGroups : any = [];
   showSwipes : boolean = false;
+  displayType : string = "";
+  statusSelected : any = [{ "id": "",  "displayId": "", "displayDescription": "",  "icon": ""  }];
 
+  showFilter : boolean = false;
   ngOnInit() {
     SwiperCore.use([Pagination]);
-    this.ordersbystatus();
     this.getKdsGroups();
+  }
+
+
+  ionViewWillEnter(){
+    this.ordersbystatus();
 
   }
   
-
-  getKdsGroups() {
+  async getKdsGroups() {
     /* this.vendasService.getKdsGroups().subscribe(async (res: any) => {
       this.listGroups = res;
        res.forEach(element => {
@@ -80,17 +86,17 @@ export class DisplayOrdersPage implements OnInit {
         "icon": "wine"
       }
     ]
-    console.log(' res listGroups ', this.listGroups);
-
+    //this.displayType = "00000000-0000-0000-0000-000000000000";
+    this.displayType = this.listGroups[0].id;
+    this.statusSelected = this.listGroups[0];
+    this.showFilter = true;
   }
 
 
-  displayType = "00000000-0000-0000-0000-000000000000";
   ordersbystatus() {
     var filtro = 'statusList=0&statusList=1&statusList=2';
     this.vendasService.ordersbystatus(filtro).subscribe(async (res: any) => {
       this.listsGeneral = res;
-      console.log(' res ordersbystatus ', res);
       //this.listOrders.Todos.listQueued = res.filter(this.setFilterTodosQueued);
       this.formatOrdersByStatus(this.listsGeneral, this.displayType);
     });
@@ -101,14 +107,16 @@ export class DisplayOrdersPage implements OnInit {
 
   async formatOrdersByStatus(list, type?) {
     this.displayType = type ? type : this.displayType;
+    var vm = this;
+    this.statusSelected = this.listGroups.filter(function(e) {
+      return e.displayId == vm.displayType; 
+    });
+
 
    // this.listQueued = this.filterItems(list, "Todos", 0);
     this.listQueued = await this.filterItems(list, this.displayType, 0);
     this.listInPreparation = await this.filterItems(list, this.displayType, 1);
     this.listReady = await this.filterItems(list, this.displayType, 2);
-    console.log('this.listQueued ', this.listQueued);
-    console.log('this.listInPreparation ', this.listInPreparation);
-    console.log('this.listReady ', this.listReady);
     this.showSwipes = true
 
   }
@@ -128,7 +136,6 @@ export class DisplayOrdersPage implements OnInit {
   onSlideChange( eventParams: Parameters<SwiperEvents['activeIndexChange']> ) {
     const [swiper] = eventParams;
     this.activeIndex = swiper.activeIndex;
-    console.log('this.activeIndex ', this.activeIndex);
     switch (this.activeIndex) {
       case 1:
         document.getElementById("titleDinamic").innerHTML = "Em Preparo";
