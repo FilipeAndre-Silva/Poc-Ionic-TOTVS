@@ -26,6 +26,10 @@ const routes: Routes = [
       {
         path: 'display-orders',
         loadChildren: () => import('../display-orders/display-orders.module').then(m => m.DisplayOrdersPageModule)      
+      },
+      {
+        path: 'display-orders-finalized',
+        loadChildren: () => import('../display-orders-finalized/display-orders-finalized.module').then(m => m.DisplayOrdersFinalizedPageModule)      
       }
       /* {
         path: 'payment',

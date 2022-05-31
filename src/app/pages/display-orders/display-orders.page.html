@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title id="titleDinamic">{{mytitleDinamic}}</ion-title>
+    <ion-title class="title-status" id="titleDinamic">{{mytitleDinamic}}</ion-title>
     <!--     <ion-title *ngIf="activeIndex == 0">Na Fila </ion-title>
     <ion-title *ngIf="activeIndex == 1"> Em Prepar o</ion-title>
     <ion-title *ngIf="activeIndex == 2">Pronto</ion-title> -->
@@ -9,6 +9,23 @@
 </ion-header>
 
 <ion-content style="height: auto;">
+  <ion-fab horizontal="end" vertical="top" slot="fixed" edge>
+    <ion-fab-button>
+      <ion-icon name="filter"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
   <swiper [spaceBetween]="10" [navigation]="true" [pagination]="{ clickable: true }" [scrollbar]="{ draggable: true }"
     (slideChange)="onSlideChange($event)" class="mySwiper">
     <ng-template swiperSlide>
