@@ -17,10 +17,10 @@ export class DisplayOrdersPage implements OnInit {
 
   constructor(private vendasService: VendasService) { }
 
-  listsGeneral: object = [];
-  listQueued: object = [];
-  listInPreparation: object = [];
-  listReady: object = [];
+  listsGeneral: any = [];
+  listQueued: any = [];
+  listInPreparation: any = [];
+  listReady: any = [];
   activeIndex : number = 0;
 
   ngOnInit() {

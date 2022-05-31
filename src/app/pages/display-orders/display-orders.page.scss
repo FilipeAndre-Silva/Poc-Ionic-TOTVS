@@ -92,3 +92,34 @@ ion-slides {
   background-color: transparent;
   // color: var(--ion-color-light);
 }
+
+
+.normal {
+  background-color: var(--ion-color-medium) !important;
+  font-size: 10px;
+  height: 25px;
+  // --header-progress-width: 75%;
+  // font-size: var(--card-header-font-size);
+  // height: var(--card-header-height);
+  line-height: 25px;
+  align-items: center;
+  padding: 0 10px;
+  display: flex;
+  background-color: transparent;
+  // color: var(--ion-color-light);
+}
+
+.warning {
+  background-color: var(--ion-color-warning) !important;
+  font-size: 10px;
+  height: 25px;
+  // --header-progress-width: 75%;
+  // font-size: var(--card-header-font-size);
+  // height: var(--card-header-height);
+  line-height: 25px;
+  align-items: center;
+  padding: 0 10px;
+  display: flex;
+  background-color: transparent;
+  // color: var(--ion-color-light);
+}
