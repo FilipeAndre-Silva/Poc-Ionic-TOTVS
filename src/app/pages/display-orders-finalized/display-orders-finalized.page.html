@@ -2,22 +2,24 @@
   <ion-toolbar>
     <ion-title class="title-status" id="titleDinamic">{{mytitleDinamic}}</ion-title>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content style="height: auto;">
 
   <swiper *ngIf="showSwipes" [spaceBetween]="10" [navigation]="true" [pagination]="{ clickable: true }" [scrollbar]="{ draggable: true }"
   (slideChange)="onSlideChange($event)" class="mySwiper">
+
+  
   <ng-template swiperSlide>
     <ion-col>
       <ion-row style="padding: 20px;">
-        <ion-col *ngIf="listReady.length > 0">
-          <!-- <ion-card> -->
-          <ion-card *ngFor="let item of listReady; index as i;">
+        <ion-col>
+          <ion-card class="main-card" *ngFor="let item of listReady; index as i;">
             <ion-card-header class="danger">
               <div> </div>
             </ion-card-header>
-            <ion-card-content class="card-content">
+            <ion-card-content class="card-content" (click)="updateStatus(item, 3);">
               <ion-card-title style="padding: 10px;">
                 <ion-row>
                   <ion-col>
@@ -36,13 +38,24 @@
                 </ion-row>
               </ion-card-title>
               <ion-list lines="none" *ngFor="let entries of item.entries;">
-                <ion-item style="    font-size: 20px;">{{entries.entryQuantity}}x {{entries.itemDescription}}
-                </ion-item>
+                <ion-item style="font-size: 20px;">{{entries.entryQuantity}}x {{entries.itemDescription}} </ion-item>
+                <ion-label class="ion-text-left" *ngFor="let modifiers of entries.modifiers;">
+                  <p style="padding: 0 16px 0 16px;"> {{modifiers.modifierQuantity}}x {{modifiers.modifierDescription}}</p>
+                </ion-label>
+                <ion-label class="ion-text-left" color="danger" *ngIf="entries.note">
+                  <p style="padding: 0 16px 0 16px; color: #eb445a;"> {{entries.note}}</p>
+                </ion-label>
               </ion-list>
             </ion-card-content>
+
             <ion-footer>
-              <ion-item>
-                <ion-badge slot="end">{{item.launchCode}}</ion-badge>
+              <ion-item lines="none" class="ion-no-padding">
+                <ion-fab>
+                  <ion-fab-button color="light" size="small" (click)="updateStatus(item, 1)">
+                    <ion-icon name="arrow-back"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+                <ion-badge class="badge-number-pedido" slot="end">{{item.launchCode}}</ion-badge>
               </ion-item>
             </ion-footer>
           </ion-card>
@@ -54,49 +67,58 @@
 
   
   <ng-template swiperSlide>
-      <ion-col>
+    <ion-col>
+      <ion-row style="padding: 20px;">
+        <ion-col>
+          <ion-card class="main-card" *ngFor="let item of listPickedUp; index as i;">
+            <ion-card-header class="danger">
+              <div> </div>
+            </ion-card-header>
+            <ion-card-content class="card-content" (click)="updateStatus(item, 4);">
+              <ion-card-title style="padding: 10px;">
+                <ion-row>
+                  <ion-col>
+                    <ion-row>
+                      <ion-label class="position-title">{{item.deliveryPlaceName}}</ion-label>
+                    </ion-row>
+                    <ion-row>
+                      <ion-label class="position-subtitle">{{item.accountName}}</ion-label>
+                    </ion-row>
+                  </ion-col>
+                  <ion-col class="ion-align-self-center">
+                    <ion-label class="category-title">
+                      {{item.displayDescription}}
+                    </ion-label>
+                  </ion-col>
+                </ion-row>
+              </ion-card-title>
+              <ion-list lines="none" *ngFor="let entries of item.entries;">
+                <ion-item style="font-size: 20px;">{{entries.entryQuantity}}x {{entries.itemDescription}} </ion-item>
+                <ion-label class="ion-text-left" *ngFor="let modifiers of entries.modifiers;">
+                  <p style="padding: 0 16px 0 16px;"> {{modifiers.modifierQuantity}}x {{modifiers.modifierDescription}}</p>
+                </ion-label>
+                <ion-label class="ion-text-left" color="danger" *ngIf="entries.note">
+                  <p style="padding: 0 16px 0 16px; color: #eb445a;"> {{entries.note}}</p>
+                </ion-label>
+              </ion-list>
+            </ion-card-content>
 
-        <ion-row style="padding: 20px;">
-          <ion-col>
-            <!-- <ion-card> -->
-            <ion-card *ngFor="let item of listPickedUp; index as i;">
-              <ion-card-header class="danger">
-                <div> </div>
-              </ion-card-header>
-              <ion-card-content class="card-content">
-                <ion-card-title style="padding: 10px;">
-                  <ion-row>
-                    <ion-col>
-                      <ion-row>
-                        <ion-label class="position-title">{{item.deliveryPlaceName}}</ion-label>
-                      </ion-row>
-                      <ion-row>
-                        <ion-label class="position-subtitle">{{item.accountName}}</ion-label>
-                      </ion-row>
-                    </ion-col>
-                    <ion-col class="ion-align-self-center">
-                      <ion-label class="category-title">
-                        {{item.displayDescription}}
-                      </ion-label>
-                    </ion-col>
-                  </ion-row>
-                </ion-card-title>
-                <ion-list lines="none" *ngFor="let entries of item.entries;">
-                  <ion-item style="    font-size: 20px;">{{entries.entryQuantity}}x {{entries.itemDescription}}
-                  </ion-item>
-                </ion-list>
-              </ion-card-content>
-              <ion-footer>
-                <ion-item>
-                  <ion-badge slot="end">{{item.launchCode}}</ion-badge>
-                </ion-item>
-              </ion-footer>
-            </ion-card>
-            <!-- </ion-card> -->
-          </ion-col>
-        </ion-row>
-      </ion-col>
+            <ion-footer>
+              <ion-item lines="none" class="ion-no-padding">
+                <ion-fab>
+                  <ion-fab-button color="light" size="small" (click)="updateStatus(item, 2)">
+                    <ion-icon name="arrow-back"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+                <ion-badge class="badge-number-pedido" slot="end">{{item.launchCode}}</ion-badge>
+              </ion-item>
+            </ion-footer>
 
-    </ng-template>
-  </swiper>
+          </ion-card>
+          <!-- </ion-card> -->
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ng-template>
+</swiper>
 </ion-content>
