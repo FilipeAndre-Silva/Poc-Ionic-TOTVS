@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DisplayOrdersFinalizedPageRoutingModule } from './display-orders-finalized-routing.module';
 
 import { DisplayOrdersFinalizedPage } from './display-orders-finalized.page';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DisplayOrdersFinalizedPageRoutingModule
+    DisplayOrdersFinalizedPageRoutingModule,
+    SwiperModule
   ],
   declarations: [DisplayOrdersFinalizedPage]
 })
