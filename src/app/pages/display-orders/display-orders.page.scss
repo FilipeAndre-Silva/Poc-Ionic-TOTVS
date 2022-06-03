@@ -34,6 +34,10 @@ ion-slides {
 }
  */
 
+ .main-card{
+   margin-bottom: 35px;
+ }
+
 .card-content {
   padding: 0;
   background-color: #F0F0F0;
@@ -48,7 +52,7 @@ ion-slides {
   color:  var(--ion-color-primary);
 }
 .position-title {
-  text-align: start;
+  text-align: center;
   font-size: 30px;
   //margin-bottom: 5px;
 }
@@ -111,14 +115,15 @@ ion-slides {
   font-size: 30px;
 }
 
-.Bebidas{
-  color: aqua;
+.badge-number-pedido{
+  padding: 5px;
+  font-size: 19px;
 }
 
-.Entrada{
-  color: blueviolet;
-}
 
-ion-icon {
+
+/* ion-icon {
   pointer-events: none;
-}
+} */
+
+$content-margin  : 10px

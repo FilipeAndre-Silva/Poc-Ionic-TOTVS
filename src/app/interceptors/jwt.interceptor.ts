@@ -1,14 +1,16 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject, of } from 'rxjs';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Observable, throwError, BehaviorSubject, of, } from 'rxjs';
 import { ApiService } from '../services/api.service';
+
 import {
     catchError,
     finalize,
     switchMap,
     filter,
     take,
+    map
 } from 'rxjs/operators';
 import { ToastController } from '@ionic/angular';
 
@@ -30,7 +32,7 @@ export class JwtInterceptor implements HttpInterceptor {
             return next.handle(this.addToken(request)).pipe(
                 catchError(err => {
                     if (err instanceof HttpErrorResponse) {
-                        console.log(err.status);
+                        return throwError(err);
                         /* switch (err.status) {
                             case 400:
                                 return this.handle400Error(err);

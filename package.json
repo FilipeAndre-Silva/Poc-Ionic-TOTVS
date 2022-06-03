@@ -31,6 +31,7 @@
     "@capacitor/status-bar": "1.0.8",
     "@capacitor/storage": "^1.2.5",
     "@ionic/angular": "^6.0.0",
+    "@microsoft/signalr": "^7.0.0-preview.4.22251.1",
     "cordova": "^11.0.0",
     "cordova-plugin-ble-central": "^1.4.4",
     "cordova-plugin-whitelist": "^1.3.5",

@@ -5,13 +5,14 @@ import { ApiService } from './api.service';
 import * as Rx from "rxjs/Rx";
 import { from, Observable, throwError } from 'rxjs';
 import { map, catchError, filter } from 'rxjs/operators';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VendasService {
 
-  constructor(private http: HttpClient, private apiService: ApiService) { }
+  constructor(private http: HttpClient, private apiService: ApiService, public toastController: ToastController) { }
   url_order = environment.api_url_order;
 
 
@@ -52,9 +53,6 @@ export class VendasService {
     .set('StatusList', 1)
     .set('StatusList', 2); */
 
-    //yRequest URL: https://kds-stg.thexpos.net/ordercontrol/kitchen/ordersbystatus?statusList=0&statusList=1&statusList=2&culture=pt-BR
-
-
     const params = new HttpParams({
       fromString: status
     });
@@ -62,14 +60,7 @@ export class VendasService {
     return this.http.get(
       `${this.url_order}/kitchen/ordersbystatus`,
       { params }
-    ).pipe(
-      map((data: any) => {
-        return data;
-      }),
-      catchError(error => {
-        return throwError('Pedidos não encontrados.');
-      })
-    )
+    ).pipe()
   }
 
   getKdsGroups() {
@@ -77,17 +68,30 @@ export class VendasService {
   }
 
 
- /*  ordersbystatus() {
-    const params = new HttpParams()
-      //.set('ExceptSalesOrders', true)
-      //.set('LimitAmount', 10)
-      .set('StatusList', 0)
-      .set('StatusList', 1)
-      .set('StatusList', 2);
+  updateOrdersStatus(param): Observable<any> {
+    var filter = {id: param.id, accountId: param.accountId, isSalesOrder: param.isSalesOrder, status: param.status }
+    return this.http.put(`${this.url_order}/kitchen/updateordersstatus`, filter)
+    .pipe()
+    /* .pipe(
+      map((data: any) => {
+        return data;
+      })
+       ,catchError(error => {
+        //console.log(error);
+        return throwError(error);
+        //return error;
+      }) 
+    ); */
+  }
 
-    return this.http.get(`${this.url_order}/kitchen/ordersbystatus`, { params });
-  } */
-
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+      position: 'top'
+    });
+    toast.present();
+  }
 }
 
 
