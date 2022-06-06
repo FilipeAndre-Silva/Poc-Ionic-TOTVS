@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VendasService } from '../../services/vendas.service';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'app-inside',
@@ -40,11 +41,12 @@ export class InsidePage implements OnInit {
     });
   }
 
-  selectCompany(idCompany){
-    console.log('idCompany => ', idCompany);
-     this.apiService.changecompany(idCompany).subscribe((res: any) => {
+  selectCompany(item){
+    console.log('companySelect => ', item);
+     this.apiService.changecompany(item).subscribe((res: any) => {
       //this.listCompanies = res;
-      console.log(' res selectCompany ',   res );
+      //Storage.set({ key: 'pos.user', value: JSON.stringify(item) });
+      //console.log(' res selectCompany ',   res );
       this.router.navigate(['tabs'], { replaceUrl: true });
     }); 
 

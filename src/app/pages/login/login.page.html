@@ -1,11 +1,13 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="primary">
     <ion-title>HOSPITALIDADE PDV</ion-title>
   </ion-toolbar>
-</ion-header>
- 
-<ion-content>
+</ion-header> -->
+
+<!-- <ion-content class="ion-padding ali" class="ion-align-items-center" class="ion-align-self-center">
   <form (ngSubmit)="login()" [formGroup]="credentials">
+
+
     <div class="input-group">
       <ion-item>
         <ion-input placeholder="Username" formControlName="login"></ion-input>
@@ -15,6 +17,33 @@
       </ion-item>
     </div>
  
-    <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button>
+    <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Entrar</ion-button> 
   </form>
+</ion-content>
+
+ -->
+<ion-content>
+  <form (ngSubmit)="login()" [formGroup]="credentials">
+    <ion-card class="ion-text-center" style="height: 100%; align-items: center; justify-content: center;" >
+      <ion-card-header>
+       
+        <ion-card-title style="color: #010101; font-size: 34px;"> Hospitalidade PDV</ion-card-title>
+        <ion-card-subtitle style="color: #0c9abe; font-size: 24px;"> Boas-vindas</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Username" formControlName="login"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Entrar</ion-button> 
+      </ion-card-content>
+    </ion-card>
+  </form>
+
 </ion-content>

@@ -6,8 +6,8 @@ import { EventsParams, } from 'swiper/angular';
 import SwiperCore, { Pagination, Swiper } from "swiper";
 import { SwiperEvents } from 'swiper/types';
 import { Platform } from '@ionic/angular';
-
-
+import { BehaviorSubject } from 'rxjs';
+import * as signalR from '@microsoft/signalr';  
 
 @Component({
   selector: 'app-display-orders',
@@ -38,15 +38,31 @@ export class DisplayOrdersPage implements OnInit {
   showFilter: boolean = false;
   ngOnInit() {
     SwiperCore.use([Pagination]);
+    this.vendasService.startConnection();
+/* 
+    this.vendasService.startConnection().subscribe((result: any) => {
+      console.log('result ', result)
+      this.listsGeneral = result;
+      if(result.length > 0){
+        this.formatOrdersByStatus(this.listsGeneral, this.displayType);
+      }else{
+        this.resetLists();
+      }
+
+    }, error => {
+      console.log(error)
+    }); */
+
+
+    console.log(this.vendasService.returnInvoke);
+    //this.vendasService.connectWebSocket();
     this.getKdsGroups();
   }
-
 
   ionViewWillEnter() {
     this.ordersbystatus();
 
   }
-
   async getKdsGroups() {
     /* this.vendasService.getKdsGroups().subscribe(async (res: any) => {
       this.listGroups = res;

@@ -8,6 +8,7 @@ import { Storage } from '@capacitor/storage';
 
 const ACCESS_TOKEN_KEY = 'my-access-token';
 const COMPANY_TOKEN_KEY = 'companyData';
+const USER_TOKEN_KEY = 'pos.user';
 
 @Injectable({
   providedIn: 'root'
@@ -50,14 +51,15 @@ export class ApiService {
     )
   }
 
-  changecompany(idCompany): Observable<any> {
-    return this.http.post(`${this.url_order}/user/changecompany?companyId=${idCompany}`, '').pipe(
+  changecompany(company): Observable<any> {
+    return this.http.post(`${this.url_order}/user/changecompany?companyId=${company.id}`, '').pipe(
       switchMap((tokens: { authenticated, created, expiration, id, newPasswordToken }) => {
         console.log(tokens);
         this.currentAccessToken = tokens.newPasswordToken;
         const storeAccess = Storage.set({ key: ACCESS_TOKEN_KEY, value: tokens.newPasswordToken });
         const companyData = Storage.set({ key: COMPANY_TOKEN_KEY, value: JSON.stringify(tokens) });
-        return from(Promise.all([storeAccess, companyData]));
+        const posUser = Storage.set({ key: USER_TOKEN_KEY, value: JSON.stringify(company) });
+        return from(Promise.all([storeAccess, companyData, posUser]));
       }),
       tap(_ => {
         this.isAuthenticated.next(true);
@@ -70,7 +72,8 @@ export class ApiService {
     // Remove all stored tokens
     const deleteAccess = Storage.remove({ key: ACCESS_TOKEN_KEY });
     const deleteCompanyAccess = Storage.remove({ key: COMPANY_TOKEN_KEY });
-    from(Promise.all([deleteAccess, deleteCompanyAccess]));
+    const deleteUserAccess = Storage.remove({ key: USER_TOKEN_KEY });
+    from(Promise.all([deleteAccess, deleteCompanyAccess, deleteUserAccess]));
     this.isAuthenticated.next(false);
     this.router.navigateByUrl('/', { replaceUrl: true });
   }
