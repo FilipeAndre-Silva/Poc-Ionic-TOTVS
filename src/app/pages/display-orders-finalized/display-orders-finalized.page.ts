@@ -41,7 +41,7 @@ export class DisplayOrdersFinalizedPage implements OnInit {
     this.listReady = await this.filterItems(list, this.displayType, 2);
     this.listPickedUp = await this.filterItems(list, this.displayType, 3);
     console.log('this.listReady ', this.listReady);
-    console.log('this.listPickeup ', this.listPickedUp);
+    console.log('this.listPickedUp ', this.listPickedUp);
     this.showSwipes = true
 
   }
@@ -50,6 +50,27 @@ export class DisplayOrdersFinalizedPage implements OnInit {
     return array.filter(function(e) {
       return e.displayId == displayType && e.kdsOrderStatus == status; 
     });
+  }
+
+  updateStatus(item, status) {
+    console.log('item ', item);
+
+    let paramFilter  = {
+      "accountId": item.accountId,
+      "id": item.kdsSalesOrderId, //id
+      "isSalesOrder": true,
+      "status": status
+    }
+    
+    this.vendasService.updateOrdersStatus(paramFilter).subscribe(async (res: any) => {
+      console.log('updateordersstatus ', res)
+
+      await this.ordersbystatus();
+
+    }, error => {
+      this.vendasService.presentToast('Erro ao atualiza status')
+    });
+
   }
   
 
