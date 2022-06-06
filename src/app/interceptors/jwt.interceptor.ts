@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject, of, } from 'rxjs';
 import { ApiService } from '../services/api.service';
+import { LoadingController } from '@ionic/angular';
 
 import {
     catchError,

@@ -34,15 +34,13 @@ export class LoginPage implements OnInit {
     this.apiService.login(this.credentials.value).subscribe(
       async _ => {        
         await loading.dismiss();        
-        console.log('teste ')
-        this.router.navigateByUrl('/inside', { replaceUrl: true });
-        //this.router.navigate(['tabs'], { replaceUrl: true });
+//        this.router.navigateByUrl('/inside', { replaceUrl: true });
+        this.router.navigate(['/inside'])
+
       },
       async (res:any) => {        
         await loading.dismiss();
-        console.log('teste 4')
         if(res.error){
-          console.log('teste 3', res)
           const alert = await this.alertController.create({
             header: 'Erro ao efetuar login',
             message: res.error?.details[0].message ? res.error.details[0].message : res,
@@ -53,25 +51,4 @@ export class LoginPage implements OnInit {
       }
     );
   }
- 
-  /* async signUp() {
-    const loading = await this.loadingController.create();
-    await loading.present();
- 
-    this.apiService.signUp(this.credentials.value).subscribe(
-      async _ => {
-        await loading.dismiss();        
-        this.login();
-      },
-      async (res:any) => {
-        await loading.dismiss();        
-        const alert = await this.alertController.create({
-          header: 'Signup failed',
-          message: res.error.msg,
-          buttons: ['OK'],
-        });
-        await alert.present();
-      }
-    );
-  } */
 }

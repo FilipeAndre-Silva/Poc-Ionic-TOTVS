@@ -40,7 +40,7 @@ ion-slides {
 
 .card-content {
   padding: 0;
-  background-color: #F0F0F0;
+  background-color:  var(--ion-color-light) !important;
   //margin-bottom: 5px;
 }
 
@@ -65,9 +65,9 @@ ion-slides {
 
 
 .danger {
-  background-color: var(--ion-color-danger) !important;
+  background-color: var(--ion-color-primary) !important;
   font-size: 10px;
-  height: 25px;
+  height: 6px;
   // --header-progress-width: 75%;
   // font-size: var(--card-header-font-size);
   // height: var(--card-header-height);

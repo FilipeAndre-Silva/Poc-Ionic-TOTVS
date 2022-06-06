@@ -1,14 +1,18 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="title-status" id="titleDinamic">{{mytitleDinamic}}</ion-title>
-    <!--     <ion-title *ngIf="activeIndex == 0">Na Fila </ion-title>
-    <ion-title *ngIf="activeIndex == 1"> Em Prepar o</ion-title>
-    <ion-title *ngIf="activeIndex == 2">Pronto</ion-title> -->
   </ion-toolbar>
 
 </ion-header>
 
 <ion-content style="height: auto;">
+
+
+  <ion-fab horizontal="start" vertical="top" slot="fixed" edge>
+    <ion-fab-button size="small" color="light" (click)="ordersbystatus()">
+      <ion-icon name="refresh"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 
   <ion-fab horizontal="end" vertical="top" slot="fixed" edge *ngIf="showFilter">
@@ -29,7 +33,6 @@
 
     <ng-template swiperSlide>
       <ion-col>
-        <!-- [style.height]="heightScreen" -->
         <ion-row style="padding: 15px;">
           <ion-col>
             <ion-card class="main-card" *ngFor="let item of listQueued; index as i;">
@@ -145,8 +148,6 @@
       <ion-col>
         <ion-row style="padding: 20px;">
           <ion-col>
-            <!-- <ion-card> -->
-            <!-- <ion-card *ngFor="let item of listReady; index as i;" (click)="updateStatus(item, 3);"> -->
             <ion-card class="main-card" *ngFor="let item of listReady; index as i;">
               <ion-card-header class="danger">
                 <div> </div>
@@ -198,7 +199,6 @@
                 statusSelected[0].displayDescription : ''}} Pronto
               </ion-card-content>
             </ion-card>
-            <!-- </ion-card> -->
           </ion-col>
         </ion-row>
       </ion-col>

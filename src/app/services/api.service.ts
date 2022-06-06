@@ -5,6 +5,7 @@ import { tap, switchMap } from 'rxjs/operators';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Storage } from '@capacitor/storage';
+import { LoadingController } from '@ionic/angular';
 
 const ACCESS_TOKEN_KEY = 'my-access-token';
 const COMPANY_TOKEN_KEY = 'companyData';
@@ -20,7 +21,7 @@ export class ApiService {
   url_order = environment.api_url_order;
 
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, public loadingController: LoadingController) {
     this.loadToken();
   }
 
@@ -83,5 +84,21 @@ export class ApiService {
     this.currentAccessToken = accessToken;
     return from(Storage.set({ key: ACCESS_TOKEN_KEY, value: accessToken }));
   }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Aguarde...',
+      //duration: 2000
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
+  }
+
+  stopLoading() {
+    setTimeout(() => {
+      this.loadingController.dismiss();
+    }, 1000);
+  }
+
 
 }
